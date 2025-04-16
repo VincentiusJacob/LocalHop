@@ -29,7 +29,7 @@ class AuthService {
   }
 
   // panggil buat register
-  Future<bool> register(String name, String password, String email) async {
+  Future<bool> register(String name, String email, String password) async {
     await loadUsers();
 
     for (var u in _users) {

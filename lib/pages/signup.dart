@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/pages/signin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignupPage extends StatelessWidget {
+import '../model/auth_service.dart';
+
+class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+class _SignupPageState extends State<SignupPage>{
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
+  AuthService authService = AuthService();
+
+  void registerUser() async {
+    bool isRegistered = await authService.register(nameController.text,emailController.text,passwordController.text);
+    if (isRegistered) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SignInPage()),
+      );
+
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registration Failed: Email already exists")));
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +138,8 @@ class SignupPage extends StatelessWidget {
                     const SizedBox(height: 24),
 
                     // Input Nama
-                    const TextField(
+                    TextField(
+                      controller: nameController,
                       decoration: InputDecoration(
                         hintText: 'Siemen',
                         suffixIcon:
@@ -125,7 +156,8 @@ class SignupPage extends StatelessWidget {
                     const SizedBox(height: 16),
 
                     // Input Email
-                    const TextField(
+                    TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         hintText: 'imshuvo97@gmail.com',
                         suffixIcon:
@@ -143,6 +175,7 @@ class SignupPage extends StatelessWidget {
 
                     // Input Password
                     TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: '●●●●●●●',
@@ -180,7 +213,9 @@ class SignupPage extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          registerUser();
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF5C2EBC),
                           padding: const EdgeInsets.symmetric(vertical: 16),

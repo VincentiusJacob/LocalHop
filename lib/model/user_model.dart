@@ -18,6 +18,10 @@ class UserModel {
     );
   }
 
+  UserModel createNewUser(String email, String name, String password){
+    UserModel users = new UserModel(email: email, name: name, password: password);
+    return users;
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -26,4 +30,6 @@ class UserModel {
       'password': password,
     };
   }
+
+
 }

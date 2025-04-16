@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../model/auth_service.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
@@ -11,6 +13,28 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+
+  //bagian validasi login
+  final AuthService authService = AuthService();
+
+  void loginUser() async {
+    bool isLoggedIn = await authService.login(emailController.text,passwordController.text);
+    if (isLoggedIn) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
+
+      //masuk ke main page.
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => "nanti di isi HomePage()")),
+      // );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Failed: Invalid credentials")));
+    }
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +148,7 @@ class _SignInPageState extends State<SignInPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // COMING SOON
+                    loginUser();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF5C2EBC),

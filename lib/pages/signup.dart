@@ -10,30 +10,62 @@ class SignupPage extends StatefulWidget {
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
-class _SignupPageState extends State<SignupPage>{
 
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
+  bool isChecked = false;
+  bool canCheck = false;
+
   AuthService authService = AuthService();
 
-  void registerUser() async {
-    bool isRegistered = await authService.register(nameController.text,emailController.text,passwordController.text);
-    if (isRegistered) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(validateInputs);
+    emailController.addListener(validateInputs);
+    passwordController.addListener(validateInputs);
+  }
 
+  //make sure semua input field terisi untuk bisa click checkbox privacy policy
+  void validateInputs() {
+    setState(() {
+      canCheck = nameController.text.isNotEmpty &&
+          emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty;
+
+      if (!canCheck) {
+        isChecked = false;
+      }
+    });
+  }
+
+  // fungsi untuk register
+  void registerUser() async {
+    bool isRegistered = await authService.register(
+      nameController.text,
+      emailController.text,
+      passwordController.text,
+    );
+
+    if (isRegistered) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Registration Successful")),
+      );
+
+      // redirect ke halaman signin
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SignInPage()),
       );
-
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registration Failed: Email already exists")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Registration Failed: Email already exists")),
+      );
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,27 +73,27 @@ class _SignupPageState extends State<SignupPage>{
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-       
+  
           Positioned(
             top: 0,
             right: 0,
             child: Image.asset(
-              'assets/images/decoration1.png', 
+              'assets/images/decoration2.png',
               width: 175,
               height: 190,
             ),
           ),
-
+      
           Positioned(
             top: 0,
             left: 0,
             child: Image.asset(
-              'assets/images/decoration1.png', 
+              'assets/images/decoration1.png',
               width: 175,
               height: 190,
             ),
           ),
-
+    
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -87,8 +119,8 @@ class _SignupPageState extends State<SignupPage>{
                       ),
                     ),
                     const SizedBox(height: 32),
-                    
-                    //FB Button
+
+                    // Facebook Btn
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton.icon(
@@ -138,43 +170,39 @@ class _SignupPageState extends State<SignupPage>{
                     ),
                     const SizedBox(height: 24),
 
-                    // Input Nama
+                    // Name Input
                     TextField(
                       controller: nameController,
                       decoration: InputDecoration(
                         hintText: 'Siemen',
-                        suffixIcon:
-                            Icon(Icons.check, color: Colors.green),
+                        suffixIcon: Icon(Icons.check, color: Colors.green),
                         filled: true,
                         fillColor: Color(0xFFF5F5F5),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(12)),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Input Email
+                    // Email Input
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(
                         hintText: 'imshuvo97@gmail.com',
-                        suffixIcon:
-                            Icon(Icons.check, color: Colors.green),
+                        suffixIcon: Icon(Icons.check, color: Colors.green),
                         filled: true,
                         fillColor: Color(0xFFF5F5F5),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(12)),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Input Password
+                    // Password Input
                     TextField(
                       controller: passwordController,
                       obscureText: true,
@@ -188,17 +216,25 @@ class _SignupPageState extends State<SignupPage>{
                         fillColor: const Color(0xFFF5F5F5),
                         border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(12)),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
-
-            
+                    
+                    // checkbox & policy
                     Row(
                       children: [
-                        Checkbox(value: false, onChanged: (val) {}),
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: canCheck
+                              ? (val) {
+                                  setState(() {
+                                    isChecked = val!;
+                                  });
+                                }
+                              : null,
+                        ),
                         const Text('I have read the '),
                         Text(
                           'Privacy Policy',
@@ -210,13 +246,11 @@ class _SignupPageState extends State<SignupPage>{
                       ],
                     ),
                     const SizedBox(height: 16),
-     
+                    // tombol submit (get started)
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          registerUser();
-                        },
+                        onPressed: isChecked ? () => registerUser() : null,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF5C2EBC),
                           padding: const EdgeInsets.symmetric(vertical: 16),

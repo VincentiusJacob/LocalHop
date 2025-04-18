@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/services.dart'; 
-import 'user_model.dart';
+
 import 'dart:io';
+
+import 'package:flutter_app_demo/model/user_model.dart';
 
 class AuthService {
   List<UserModel> _users = [];
+
   Future<File> _getLocalFile() async {
     return File('lib/data/dummy_user.json');
   }

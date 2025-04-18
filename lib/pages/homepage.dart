@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/controller/city_service.dart';
+import 'package:flutter_app_demo/model/city_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,7 +11,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  
+  final CityService _cityService = CityService(); 
+  List<CityModel> _cities = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCities();
+  }
+
+  Future<void> _loadCities() async {
+    final List<CityModel> cities = await _cityService.loadCities();
+    setState(() {
+      _cities = cities;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,44 +56,18 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Text('Recommended for you', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
-
+          ..._cities.map((city) => _imageCard(city)).toList(),
+          
           SizedBox(height: 20),
           Text('Recommended places by others', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
+          ..._cities.map((city) => _imageCard(city)).toList(),
+          
 
           SizedBox(height: 20),
           Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
-          _imageCard(
-            'Yogyakarta',
-            'Daerah Istimewa Yogyakarta',
-            'assets/images/Yogyakarta.jpeg',
-          ),
+          ..._cities.map((city) => _imageCard(city)).toList(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -98,6 +89,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }
 
 Widget _filterTab(String label) {
@@ -111,27 +103,62 @@ Widget _filterTab(String label) {
   );
 }
 
-Widget _imageCard(String title, String subtitle, String imagePath) {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 8),
-    child: Card(
-      elevation: 4,
-      child: Row(
-        children: [
-          Image.asset(imagePath, width: 120, height: 120, fit: BoxFit.cover),
-          SizedBox(width: 12),
-          Column(
+Widget _imageCard(CityModel city) {
+  return GestureDetector(
+    onTap: () {
+      // Navigasi ke halaman detail bisa ditambahkan di sini
+    },
+    child: Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: TextStyle(fontSize: 18)),
-              Text(
-                subtitle,
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  city.image,
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(city.city, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 4),
+                    Text(
+                      city.province,
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                    SizedBox(height: 10),
+                    Text('Places to visit:', style: TextStyle(fontSize: 16)),
+                    ...city.places.map((place) => _placeCard(place)).toList(),
+                  ],
+                ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     ),
   );
 }
+
+ Widget _placeCard(PlaceModel place) {
+    return Card(
+      elevation: 2,
+      margin: EdgeInsets.symmetric(vertical: 4),
+      child: ListTile(
+        leading: Image.asset(place.image, width: 50, height: 50, fit: BoxFit.cover),
+        title: Text(place.name),
+        subtitle: Text(place.description),
+      ),
+    );
+  }

@@ -58,8 +58,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - lib/data/dummy_user.json
-    - lib/data/dummy_place.json
+    - lib/data/
+    - lib/controller/
+    - lib/model/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

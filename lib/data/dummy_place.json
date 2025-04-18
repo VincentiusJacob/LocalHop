@@ -7,29 +7,29 @@
         {
           "name": "Malioboro",
           "description": "Jalan legendaris penuh oleh-oleh dan kuliner",
-          "image": "assets/images/malioboro.jpeg"
+          "image": ""
         },
         {
           "name": "Keraton Yogyakarta",
           "description": "Istana kerajaan budaya Jawa",
-          "image": "assets/images/keraton.jpeg"
+          "image": ""
         }
       ]
     },
     {
       "city": "Bandung",
       "province": "Jawa Barat",
-      "image": "assets/images/Bandung.jpeg",
+      "image": "",
       "places": [
         {
           "name": "Lembang",
           "description": "Wisata alam dan udara sejuk",
-          "image": "assets/images/lembang.jpeg"
+          "image": ""
         },
         {
           "name": "Braga Street",
           "description": "Kawasan klasik penuh sejarah",
-          "image": "assets/images/braga.jpeg"
+          "image": ""
         }
       ]
     }

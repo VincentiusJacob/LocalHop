@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/pages/signin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../model/auth_service.dart';
+import '../controller/auth_service.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

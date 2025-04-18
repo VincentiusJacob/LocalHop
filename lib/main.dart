@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'To Do App',
       initialRoute: '/',
       routes: {
-        // '/': (context) => Landingpage(),
-        '/': (context) => HomePage(),
+        '/': (context) => Landingpage(),
+        '/HomePage': (context) => HomePage(),
         '/signin': (context) => const SignInPage(),
         '/signup': (context) => const SignupPage(),
       },

@@ -6,7 +6,7 @@ import 'dart:io';
 class AuthService {
   List<UserModel> _users = [];
   Future<File> _getLocalFile() async {
-    return File('lib/assets/JSON/dummy_user.json');
+    return File('lib/data/dummy_user.json');
   }
 
   Future<void> loadUsers() async {

@@ -3,6 +3,7 @@ import 'package:flutter_app_demo/pages/landingpage.dart';
 import 'package:flutter_app_demo/pages/signin.dart';
 import 'package:flutter_app_demo/pages/signup.dart';
 import 'package:flutter_app_demo/pages/homepage.dart';
+import 'package:flutter_app_demo/pages/destinationPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Landingpage(),
+        '/DestinationPage': (context) => DestinationPage(),
         '/HomePage': (context) => HomePage(),
         '/signin': (context) => const SignInPage(),
         '/signup': (context) => const SignupPage(),

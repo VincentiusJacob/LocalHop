@@ -1,23 +1,23 @@
 [
-    {
-      "city": "Yogyakarta",
-      "province": "Daerah Istimewa Yogyakarta",
-      "image": "assets/images/Yogyakarta.jpeg",
-      "description": "Yogyakarta is a vibrant city in Indonesia known for its rich cultural heritage, including traditional art, historic sites, and the majestic Sultan's Palace.",
-      "favorite": 17293,
-      "places": [
-        {
-          "name": "Malioboro",
-          "description": "Jalan legendaris penuh oleh-oleh dan kuliner",
-          "image": ""
-        },
-        {
-          "name": "Keraton Yogyakarta",
-          "description": "Istana kerajaan budaya Jawa",
-          "image": ""
-        }
-      ]
-    },
+  {
+    "city": "Yogyakarta",
+    "province": "Daerah Istimewa Yogyakarta",
+    "image": "assets/images/Yogyakarta.jpeg",
+    "description": "Yogyakarta is a vibrant city in Indonesia known for its rich cultural heritage, including traditional art, historic sites, and the majestic Sultan's Palace.",
+    "favorite": 17293,
+    "places": [
+      {
+        "name": "Malioboro",
+        "description": "Jalan legendaris penuh oleh-oleh dan kuliner",
+        "image": "assets/images/Malioboro.jpg"
+      },
+      {
+        "name": "Keraton Yogyakarta",
+        "description": "Istana kerajaan budaya Jawa",
+        "image": "assets/images/Keraton.jpg"
+      }
+    ]
+  },
   {
     "city": "Bandung",
     "province": "Jawa Barat",
@@ -28,19 +28,18 @@
       {
         "name": "Gedung Sate",
         "description": "Ikon arsitektur kolonial Belanda di jantung kota Bandung.",
-        "image": "assets/images/gedung_sate.jpg"
+        "image": "assets/images/gedung_sate.jpeg"
       },
       {
         "name": "Kawah Putih",
         "description": "Danau kawah berwarna putih kehijauan yang memesona di Ciwidey.",
-        "image": "assets/images/kawah_putih.jpg"
+        "image": "assets/images/kawah_putih.jpeg"
       },
       {
         "name": "Farm House Lembang",
         "description": "Wisata keluarga dengan tema Eropa dan rumah hobbit.",
-        "image": "assets/images/farmhouse.jpg"
+        "image": "assets/images/farmhouse.jpeg"
       }
     ]
   }
 ]
-  

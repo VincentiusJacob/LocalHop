@@ -68,17 +68,17 @@ class _DestinationPageState extends State<DestinationPage> {
           ..._cities.map((city) => _imageCard(context, city)).toList(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_city_outlined),
-            label: 'Destination',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: 0,
+      //   items: [
+      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.location_city_outlined),
+      //       label: 'Destination',
+      //     ),
+      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+      //   ],
+      // ),
     );
   }
 

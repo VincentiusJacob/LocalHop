@@ -31,17 +31,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Local Hop!'),
+        title: const Text('Local Hop!', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        iconTheme: const IconThemeData(color: Colors.black),
+        actions: const [
+          IconButton(onPressed: null, icon: Icon(Icons.notifications)),
+          IconButton(onPressed: null, icon: Icon(Icons.search)),
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         children: [
-          // Filter
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -52,31 +52,24 @@ class _HomePageState extends State<HomePage> {
               _filterTab(4, 'Family', Icons.family_restroom),
             ],
           ),
-          SizedBox(height: 20),
-          Text('Recommended for you', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context, city)).toList(),
-
-          SizedBox(height: 20),
-          Text('Recommended places by others', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context, city)).toList(),
-
-          SizedBox(height: 20),
-          Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context, city)).toList(),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_city_outlined),
-            label: 'Destination',
+          const SizedBox(height: 20),
+          const Text('Recommended for you', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 10),
+          ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
+          const SizedBox(height: 20),
+          const Text(
+            'Recommended places by others',
+            style: TextStyle(fontSize: 20),
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+          const SizedBox(height: 10),
+          ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
+          const SizedBox(height: 20),
+          const Text(
+            'Explore Similar Destination',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 10),
+          ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
         ],
       ),
     );
@@ -127,7 +120,7 @@ Widget _imageCard(BuildContext context, CityModel city) {
       );
     },
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Card(
         elevation: 4,
         child: Padding(
@@ -144,26 +137,32 @@ Widget _imageCard(BuildContext context, CityModel city) {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       city.city,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       city.province,
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                    SizedBox(height: 10),
-                    Text('Places to visit:', style: TextStyle(fontSize: 16)),
-                    ...city.places.map((place) => _placeCard(place)).toList(),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Places to visit:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    ...city.places
+                        .take(2)
+                        .map((place) => _placeCard(place))
+                        .toList(),
                   ],
                 ),
               ),

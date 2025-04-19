@@ -24,7 +24,7 @@ class _SignInPageState extends State<SignInPage> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login Successful")));
 
       //masuk ke main page
-      Navigator.pushReplacementNamed(context, '/HomePage');
+      Navigator.pushReplacementNamed(context, '/main');
 
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login Failed: Invalid credentials")));

@@ -3,6 +3,10 @@ import 'package:flutter_app_demo/pages/landingpage.dart';
 import 'package:flutter_app_demo/pages/signin.dart';
 import 'package:flutter_app_demo/pages/signup.dart';
 import 'package:flutter_app_demo/pages/homepage.dart';
+import 'package:flutter_app_demo/pages/destinationPage.dart';
+import 'package:flutter_app_demo/pages/mainpage.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -15,14 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'To Do App',
+      title: 'Local Hop!',
       initialRoute: '/',
-      routes: {
-        '/': (context) => Landingpage(),
-        '/HomePage': (context) => HomePage(),
-        '/signin': (context) => const SignInPage(),
-        '/signup': (context) => const SignupPage(),
-      },
+     routes: {
+      '/': (context) => Landingpage(),
+      '/destination': (context) => DestinationPage(),
+      '/home': (context) => HomePage(),
+      '/main': (context) => MainPage(),
+      '/signin': (context) => SignInPage(),
+      '/signup': (context) => SignupPage(),
+    },
     );
   }
 }

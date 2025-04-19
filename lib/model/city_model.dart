@@ -1,4 +1,3 @@
-
 class PlaceModel {
   final String name;
   final String description;
@@ -12,9 +11,9 @@ class PlaceModel {
 
   factory PlaceModel.fromJson(Map<String, dynamic> json) {
     return PlaceModel(
-      name: json['name'] ?? 'Unknown Place',
-      description: json['description'] ?? '',
-      image: json['image'] ?? '',
+      name: json['name'] ,
+      description: json['description'],
+      image: json['image'],
     );
   }
 }

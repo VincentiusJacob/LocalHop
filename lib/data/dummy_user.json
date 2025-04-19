@@ -1,8 +1,1 @@
-{
-  "users": [
-    { "email": "siemen@gmail.com", "name": "Siemen", "password": "Siemen123" },
-    { "email": "ikan@gmail.com", "name": "ikan goreng", "password": "ikan123" },
-    { "email": "drudru@gmail.com", "name": "Andrew", "password": "drudru123" },
-    { "email": "ym@gmail.com", "name": "ym", "password": "ym123" }
-  ]
-}
+{"users":[{"email":"siemen@gmail.com","name":"Siemen","password":"Siemen123"},{"email":"ikan@gmail.com","name":"ikan goreng","password":"ikan123"},{"email":"drudru@gmail.com","name":"Andrew","password":"drudru123"},{"email":"ym@gmail.com","name":"ym","password":"ym123"},{"email":"drudru1@gmail.com","name":"drudru1","password":"drudru123"},{"email":"dru@gmail.com","name":"dru","password":"dru123"}]}

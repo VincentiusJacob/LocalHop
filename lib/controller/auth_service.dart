@@ -1,17 +1,15 @@
-import 'dart:io';
 import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart'; 
+
+import 'dart:io';
+
 import 'package:flutter_app_demo/model/user_model.dart';
 
 class AuthService {
   List<UserModel> _users = [];
 
   Future<File> _getLocalFile() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = directory.path;
-    final file = File('$path/dummy_user.json');
-    return file;
+    return File('lib/data/dummy_user.json');
   }
 
   Future<void> loadUsers() async {
@@ -23,40 +21,47 @@ class AuthService {
       final usersFromJson = data['users'] as List;
       _users = usersFromJson.map((json) => UserModel.fromJson(json)).toList();
     } else {
-      // load dari assets hanya pertama kali
       final assetData = await rootBundle.loadString('lib/data/dummy_user.json');
       final data = json.decode(assetData);
       final usersFromJson = data['users'] as List;
       _users = usersFromJson.map((json) => UserModel.fromJson(json)).toList();
 
-      // simpan ke file lokal
+      // simpan ke file lokal untuk pertama kali
       await saveUsersToFile();
     }
   }
 
-  Future<void> saveUsersToFile() async {
-    final file = await _getLocalFile();
-    final data = {'users': _users.map((user) => user.toJson()).toList()};
-    await file.writeAsString(json.encode(data));
-  }
 
+
+  // panggil buat register
   Future<bool> register(String name, String email, String password) async {
     await loadUsers();
 
+    
+
     for (var u in _users) {
       if (u.email == email) {
-        return false;
+        return false; 
       }
     }
 
-    UserModel newUser = UserModel(email: email, name: name, password: password);
-    _users.add(newUser);
+    _users.add(UserModel.createNewUser(email: email, name: name, password: password));
 
     await saveUsersToFile();
+    
     return true;
   }
 
-  Future<bool> login(String email, String password) async {
+  Future<void> saveUsersToFile() async {
+    final File file = await _getLocalFile();
+    final data = {'users': _users.map((user) => user.toJson()).toList()};
+    await file.writeAsString(json.encode(data));
+
+    return;
+  }
+
+  // buat login
+  Future<bool> login(String email , String password) async {
     await loadUsers();
 
     for (var u in _users) {
@@ -64,6 +69,6 @@ class AuthService {
         return true;
       }
     }
-    return false;
+    return false; 
   }
 }

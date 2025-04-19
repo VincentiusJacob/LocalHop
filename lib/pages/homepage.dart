@@ -11,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final CityService _cityService = CityService(); 
   List<CityModel> _cities = [];
 
@@ -28,22 +27,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Local Hop!'),
+        title: const Text('Local Hop!', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        iconTheme: const IconThemeData(color: Colors.black),
+        actions: const [
+          IconButton(onPressed: null, icon: Icon(Icons.notifications)),
+          IconButton(onPressed: null, icon: Icon(Icons.search)),
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         children: [
-          // Filter
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -54,113 +52,85 @@ class _HomePageState extends State<HomePage> {
               _filterTab('Family'),
             ],
           ),
-          SizedBox(height: 20),
-          Text('Recommended for you', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
-          
-          SizedBox(height: 20),
-          Text('Recommended places by others', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
-          
-
-          SizedBox(height: 20),
-          Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
-          SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
-            label: 'Home'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_city_outlined),
-            label: 'Destination'
-          ),  
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'profile'
-          ) 
+          const SizedBox(height: 20),
+          const Text('Recommended for you', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 10),
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
+          const SizedBox(height: 20),
+          const Text('Recommended places by others', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 10),
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
+          const SizedBox(height: 20),
+          const Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 10),
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
         ],
       ),
     );
   }
 
-}
+  Widget _filterTab(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.purple.shade100,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(label, style: const TextStyle(color: Colors.purple)),
+    );
+  }
 
-Widget _filterTab(String label) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-    decoration: BoxDecoration(
-      color: Colors.purple.shade100,
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Text(label, style: TextStyle(color: Colors.purple)),
-  );
-}
-
-Widget _imageCard(BuildContext context,CityModel city) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
+  Widget _imageCard(BuildContext context, CityModel city) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
           builder: (_) => CityDetailPage(city: city),
-    ),
-  );
-    },
-    child: Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
-      child: Card(
-        elevation: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  city.image,
-                  width: 120,
-                  height: 120,
-                  fit: BoxFit.cover,
+        ));
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        child: Card(
+          elevation: 4,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    city.image,
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(city.city, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 4),
-                    Text(
-                      city.province,
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
-                    SizedBox(height: 10),
-                    Text('Places to visit:', style: TextStyle(fontSize: 16)),
-                    ...city.places.map((place) => _placeCard(place)).toList(),
-                  ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(city.city, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 4),
+                      Text(city.province, style: const TextStyle(fontSize: 14, color: Colors.grey)),
+                      const SizedBox(height: 10),
+                      const Text('Places to visit:', style: TextStyle(fontSize: 16)),
+                      ...city.places.map((place) => _placeCard(place)).toList(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
- Widget _placeCard(PlaceModel place) {
+  Widget _placeCard(PlaceModel place) {
     return Card(
       elevation: 2,
-      margin: EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       child: ListTile(
         leading: Image.asset(place.image, width: 50, height: 50, fit: BoxFit.cover),
         title: Text(place.name),
@@ -168,3 +138,4 @@ Widget _imageCard(BuildContext context,CityModel city) {
       ),
     );
   }
+}

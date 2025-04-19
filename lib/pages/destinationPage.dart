@@ -11,8 +11,7 @@ class DestinationPage extends StatefulWidget {
 }
 
 class _DestinationPageState extends State<DestinationPage> {
-
-  final CityService _cityService = CityService(); 
+  final CityService _cityService = CityService();
   List<CityModel> _cities = [];
 
   @override
@@ -27,7 +26,6 @@ class _DestinationPageState extends State<DestinationPage> {
       _cities = cities;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,61 +45,77 @@ class _DestinationPageState extends State<DestinationPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _filterTab('All'),
-              _filterTab('My'),
-              _filterTab('Places'),
-              _filterTab('Nature'),
-              _filterTab('Family'),
+              _filterTab(0, 'All', Icons.grid_view),
+              _filterTab(1, 'My', Icons.favorite),
+              _filterTab(2, 'Places', Icons.place),
+              _filterTab(3, 'Nature', Icons.nature_people_rounded),
+              _filterTab(4, 'Family', Icons.family_restroom),
             ],
           ),
           SizedBox(height: 20),
           Text('Recommended for you', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
-          
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
+
           SizedBox(height: 20),
           Text('Recommended places by others', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
-          
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
 
           SizedBox(height: 20),
           Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(context,city)).toList(),
+          ..._cities.map((city) => _imageCard(context, city)).toList(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
-            label: 'Home'
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_city_outlined),
-            label: 'Destination'
-          ),  
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'profile'
-          ) 
+            label: 'Destination',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
         ],
       ),
     );
   }
 
-}
+  int selectedTab = 0;
 
-Widget _filterTab(String label) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-    decoration: BoxDecoration(
-      color: Colors.purple.shade100,
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Text(label, style: TextStyle(color: Colors.purple)),
-  );
+  Widget _filterTab(int index, String label, IconData icon) {
+    bool isSelected = selectedTab == index;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedTab = index;
+        });
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            decoration: BoxDecoration(
+              color: isSelected ? Colors.purple : Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Icon(icon, color: isSelected ? Colors.white : Colors.purple),
+          ),
+          SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.purple,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 Widget _imageCard(BuildContext context, CityModel city) {
@@ -109,24 +123,19 @@ Widget _imageCard(BuildContext context, CityModel city) {
     onTap: () {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => CityDetailPage(city: city),
-        ),
+        MaterialPageRoute(builder: (_) => CityDetailPage(city: city)),
       );
     },
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 10), 
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16), 
-        ),
-        elevation: 6, 
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 6,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16), 
+          borderRadius: BorderRadius.circular(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
@@ -136,7 +145,7 @@ Widget _imageCard(BuildContext context, CityModel city) {
                   city.image,
                   width: double.infinity,
                   height: 180,
-                  fit: BoxFit.cover, 
+                  fit: BoxFit.cover,
                 ),
               ),
               Padding(
@@ -144,7 +153,6 @@ Widget _imageCard(BuildContext context, CityModel city) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
                     Text(
                       city.city,
                       style: TextStyle(
@@ -154,16 +162,13 @@ Widget _imageCard(BuildContext context, CityModel city) {
                       ),
                     ),
                     SizedBox(height: 4),
-                 
+
                     Text(
                       city.province,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                     SizedBox(height: 10),
-                  
+
                     Text(
                       'Places to visit:',
                       style: TextStyle(
@@ -171,7 +176,7 @@ Widget _imageCard(BuildContext context, CityModel city) {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    
+
                     ...city.places.map((place) => _placeCard(place)).toList(),
                   ],
                 ),
@@ -184,15 +189,19 @@ Widget _imageCard(BuildContext context, CityModel city) {
   );
 }
 
-
- Widget _placeCard(PlaceModel place) {
-    return Card(
-      elevation: 2,
-      margin: EdgeInsets.symmetric(vertical: 4),
-      child: ListTile(
-        leading: Image.asset(place.image, width: 50, height: 50, fit: BoxFit.cover),
-        title: Text(place.name),
-        subtitle: Text(place.description),
+Widget _placeCard(PlaceModel place) {
+  return Card(
+    elevation: 2,
+    margin: EdgeInsets.symmetric(vertical: 4),
+    child: ListTile(
+      leading: Image.asset(
+        place.image,
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover,
       ),
-    );
-  }
+      title: Text(place.name),
+      subtitle: Text(place.description),
+    ),
+  );
+}

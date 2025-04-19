@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class PlaceModel {
   final String name;
   final String description;
@@ -22,6 +24,8 @@ class CityModel {
   final String city;
   final String province;
   final String image;
+  final String description;
+  final int favorite;
   final List<PlaceModel> places;
 
   CityModel({
@@ -29,6 +33,8 @@ class CityModel {
     required this.province,
     required this.image,
     required this.places,
+    required this.description,
+    required this.favorite
   });
 
   factory CityModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +46,8 @@ class CityModel {
       city: json['city'],
       province: json['province'],
       image: json['image'],
+      description: json['description'],
+      favorite: json['favorite'],
       places: placeList,
     );
   }

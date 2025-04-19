@@ -3,6 +3,8 @@
       "city": "Yogyakarta",
       "province": "Daerah Istimewa Yogyakarta",
       "image": "assets/images/Yogyakarta.jpeg",
+      "description": "Yogyakarta is a vibrant city in Indonesia known for its rich cultural heritage, including traditional art, historic sites, and the majestic Sultan's Palace.",
+      "favorite": 17293,
       "places": [
         {
           "name": "Malioboro",
@@ -16,22 +18,29 @@
         }
       ]
     },
-    {
-      "city": "Bandung",
-      "province": "Jawa Barat",
-      "image": "",
-      "places": [
-        {
-          "name": "Lembang",
-          "description": "Wisata alam dan udara sejuk",
-          "image": ""
-        },
-        {
-          "name": "Braga Street",
-          "description": "Kawasan klasik penuh sejarah",
-          "image": ""
-        }
-      ]
-    }
-  ]
+  {
+    "city": "Bandung",
+    "province": "Jawa Barat",
+    "image": "assets/images/Bandung.jpeg",
+    "description": "Bandung dikenal sebagai Paris van Java, kota dengan udara sejuk, kuliner lezat, dan pusat fashion.",
+    "favorite": 27293,
+    "places": [
+      {
+        "name": "Gedung Sate",
+        "description": "Ikon arsitektur kolonial Belanda di jantung kota Bandung.",
+        "image": "assets/images/gedung_sate.jpg"
+      },
+      {
+        "name": "Kawah Putih",
+        "description": "Danau kawah berwarna putih kehijauan yang memesona di Ciwidey.",
+        "image": "assets/images/kawah_putih.jpg"
+      },
+      {
+        "name": "Farm House Lembang",
+        "description": "Wisata keluarga dengan tema Eropa dan rumah hobbit.",
+        "image": "assets/images/farmhouse.jpg"
+      }
+    ]
+  }
+]
   

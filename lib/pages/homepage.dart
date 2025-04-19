@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/controller/city_service.dart';
 import 'package:flutter_app_demo/model/city_model.dart';
+import 'package:flutter_app_demo/pages/detailcity.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -56,18 +57,18 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Text('Recommended for you', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(city)).toList(),
+          ..._cities.map((city) => _imageCard(context,city)).toList(),
           
           SizedBox(height: 20),
           Text('Recommended places by others', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(city)).toList(),
+          ..._cities.map((city) => _imageCard(context,city)).toList(),
           
 
           SizedBox(height: 20),
           Text('Explore Similar Destination', style: TextStyle(fontSize: 20)),
           SizedBox(height: 10),
-          ..._cities.map((city) => _imageCard(city)).toList(),
+          ..._cities.map((city) => _imageCard(context,city)).toList(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -103,10 +104,15 @@ Widget _filterTab(String label) {
   );
 }
 
-Widget _imageCard(CityModel city) {
+Widget _imageCard(BuildContext context,CityModel city) {
   return GestureDetector(
     onTap: () {
-      // Navigasi ke halaman detail bisa ditambahkan di sini
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CityDetailPage(city: city),
+    ),
+  );
     },
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 8),

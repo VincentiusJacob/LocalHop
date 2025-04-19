@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/pages/destinationPage.dart';
 import 'homepage.dart';
 import 'profilepage.dart';
 
@@ -14,7 +15,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(child: Text("Destination Page (coming soon)")),
+    const DestinationPage(),
     const ProfilePage(),
   ];
 

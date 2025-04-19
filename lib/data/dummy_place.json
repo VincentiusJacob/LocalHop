@@ -5,6 +5,7 @@
     "image": "assets/images/Yogyakarta.jpeg",
     "description": "Yogyakarta is a vibrant city in Indonesia known for its rich cultural heritage, including traditional art, historic sites, and the majestic Sultan's Palace.",
     "favorite": 17293,
+    "category": "My",
     "places": [
       {
         "name": "Malioboro",
@@ -24,6 +25,7 @@
     "image": "assets/images/Bandung.jpeg",
     "description": "Bandung dikenal sebagai Paris van Java, kota dengan udara sejuk, kuliner lezat, dan pusat fashion.",
     "favorite": 27293,
+    "category": "Popular",
     "places": [
       {
         "name": "Gedung Sate",

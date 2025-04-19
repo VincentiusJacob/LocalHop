@@ -50,7 +50,7 @@ class AuthService {
       }
     }
 
-    _users.add(UserModel.createNewUser(email: email, name: name, password: password));
+    _users.add(UserModel(email: email, name: name, password: password));
     await saveUsersToFile();
 
     return true;

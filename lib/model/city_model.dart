@@ -25,6 +25,7 @@ class CityModel {
   final String description;
   final int favorite;
   final List<PlaceModel> places;
+  final String category; 
 
   CityModel({
     required this.city,
@@ -32,7 +33,8 @@ class CityModel {
     required this.image,
     required this.places,
     required this.description,
-    required this.favorite
+    required this.favorite,
+    required this.category, 
   });
 
   factory CityModel.fromJson(Map<String, dynamic> json) {
@@ -46,7 +48,9 @@ class CityModel {
       image: json['image'],
       description: json['description'],
       favorite: json['favorite'],
+      category: json['category'], 
       places: placeList,
     );
   }
 }
+

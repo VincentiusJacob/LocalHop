@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/model/city_model.dart';
+import 'package:flutter_app_demo/pages/destinationplaces.dart';
+
 
 
 class CityDetailPage extends StatelessWidget {
@@ -125,7 +127,12 @@ class CityDetailPage extends StatelessWidget {
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          // Tambahkan navigasi ke halaman semua destinasi jika perlu
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DestinationPlacesPage(city: city),
+                            ),
+                          );
                         },
                         child: Text(
                           'SHOW ALL',

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditProfilePage();
+}
+
+class _EditProfilePage extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {

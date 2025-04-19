@@ -34,7 +34,7 @@ class UserModel {
       image: json['image']?.toString() ?? '',
       phoneNumber: json['phoneNumber']?.toString() ?? '',
       address: json['address']?.toString() ?? '',
-    );
+    ); 
 }
 
 

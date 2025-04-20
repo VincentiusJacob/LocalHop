@@ -32,12 +32,27 @@ class _DestinationPageState extends State<DestinationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Local Hop!',
-          style: TextStyle(
-            color: Colors.deepPurple,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+        title: RichText(
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: 'Local',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF5C2EBC),
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              TextSpan(
+                text: 'Hop!',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF99A3AB),
+                ),
+              ),
+            ],
           ),
         ),
         backgroundColor: Colors.white,
@@ -52,11 +67,12 @@ class _DestinationPageState extends State<DestinationPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Filter 
+          // Filter
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _filterTab(0, 'All', Icons.grid_view),
                 SizedBox(width: 12),
@@ -71,7 +87,7 @@ class _DestinationPageState extends State<DestinationPage> {
             ),
           ),
 
-          // Destination 
+          // Destination
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -89,7 +105,9 @@ class _DestinationPageState extends State<DestinationPage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => CityDetailPage(city: city)),
+                        MaterialPageRoute(
+                          builder: (_) => CityDetailPage(city: city),
+                        ),
                       );
                     },
                     child: Container(
@@ -108,10 +126,7 @@ class _DestinationPageState extends State<DestinationPage> {
                         child: Stack(
                           children: [
                             Positioned.fill(
-                              child: Image.asset(
-                                city.image,
-                                fit: BoxFit.cover,
-                              ),
+                              child: Image.asset(city.image, fit: BoxFit.cover),
                             ),
                             Positioned(
                               bottom: 0,
@@ -177,23 +192,22 @@ class _DestinationPageState extends State<DestinationPage> {
     );
   }
 
- List<CityModel> _filteredCities() {
-  if (selectedTab == 0) {
-    return _cities; 
-  }
-
-  switch (selectedTab) {
-    case 1:
-      return _cities.where((city) => city.category == 'My').toList();
-    case 2:
-      return _cities.where((city) => city.category == 'Family').toList();
-    case 3:
-      return _cities.where((city) => city.category == 'Natureh').toList();
-    case 4:
-      return _cities.where((city) => city.category == 'Kids').toList();
-    default:
+  List<CityModel> _filteredCities() {
+    if (selectedTab == 0) {
       return _cities;
-  }
-}
+    }
 
+    switch (selectedTab) {
+      case 1:
+        return _cities.where((city) => city.category == 'My').toList();
+      case 2:
+        return _cities.where((city) => city.category == 'Family').toList();
+      case 3:
+        return _cities.where((city) => city.category == 'Natureh').toList();
+      case 4:
+        return _cities.where((city) => city.category == 'Kids').toList();
+      default:
+        return _cities;
+    }
+  }
 }

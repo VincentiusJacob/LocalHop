@@ -25,7 +25,7 @@ class AuthService {
       final usersFromJson = data['users'] as List;
       _users = usersFromJson.map((json) => UserModel.fromJson(json)).toList();
     } else {
-      final assetData = await rootBundle.loadString('assets/data/dummy_user.json');
+      final assetData = await rootBundle.loadString('lib/data/dummy_user.json');
       final data = json.decode(assetData);
       final usersFromJson = data['users'] as List;
       _users = usersFromJson.map((json) => UserModel.fromJson(json)).toList();
@@ -65,5 +65,5 @@ class AuthService {
       }
     }
     return false;
-  }
+ }
 }

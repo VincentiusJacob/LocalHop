@@ -41,15 +41,16 @@ class _LandingPageState extends State<Landingpage> {
                         TextSpan(
                           text: 'Local',
                           style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.w800,
+                            fontSize: 42,
+                            fontWeight: FontWeight.w600,
                             color: Color(0xFF5C2EBC),
+                            fontFamily: 'Montserrat'
                           ),
                         ),
                         TextSpan(
                           text: 'Hop!',
                           style: TextStyle(
-                            fontSize: 32,
+                            fontSize: 42,
                             fontWeight: FontWeight.w400,
                             color: Color(0xFF99A3AB),
                           ),
@@ -78,10 +79,11 @@ class _LandingPageState extends State<Landingpage> {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    'We guide you towards nutritious, wholesome food\nchoices for a healthier lifestyle.',
+                    'Discover the beauty of Indonesia,\nwhere every journey inspires.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
+                      fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.center,
                   ),

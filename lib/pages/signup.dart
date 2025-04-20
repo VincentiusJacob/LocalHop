@@ -3,7 +3,6 @@ import 'package:flutter_app_demo/controller/auth_service.dart';
 import 'package:flutter_app_demo/pages/signin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -15,7 +14,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-
+  bool isPasswordVisible = false;
   bool isChecked = false;
   bool canCheck = false;
 
@@ -32,7 +31,8 @@ class _SignupPageState extends State<SignupPage> {
   //make sure semua input field terisi untuk bisa click checkbox privacy policy
   void validateInputs() {
     setState(() {
-      canCheck = nameController.text.isNotEmpty &&
+      canCheck =
+          nameController.text.isNotEmpty &&
           emailController.text.isNotEmpty &&
           passwordController.text.isNotEmpty;
 
@@ -51,9 +51,9 @@ class _SignupPageState extends State<SignupPage> {
     );
 
     if (isRegistered) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Registration Successful")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Registration Successful")));
 
       // redirect ke halaman signin
       Navigator.pushReplacement(
@@ -73,7 +73,6 @@ class _SignupPageState extends State<SignupPage> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-  
           Positioned(
             top: 0,
             right: 0,
@@ -83,7 +82,7 @@ class _SignupPageState extends State<SignupPage> {
               height: 190,
             ),
           ),
-      
+
           Positioned(
             top: 0,
             left: 0,
@@ -93,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
               height: 190,
             ),
           ),
-    
+
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -145,8 +144,10 @@ class _SignupPageState extends State<SignupPage> {
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton.icon(
-                        icon: const Icon(FontAwesomeIcons.google,
-                            color: Colors.black),
+                        icon: const Icon(
+                          FontAwesomeIcons.google,
+                          color: Colors.black,
+                        ),
                         label: const Text('CONTINUE WITH GOOGLE'),
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 14),
@@ -174,7 +175,7 @@ class _SignupPageState extends State<SignupPage> {
                     TextField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        hintText: 'Siemen',
+                        hintText: 'Enter your name',
                         suffixIcon: Icon(Icons.check, color: Colors.green),
                         filled: true,
                         fillColor: Color(0xFFF5F5F5),
@@ -190,7 +191,7 @@ class _SignupPageState extends State<SignupPage> {
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(
-                        hintText: 'imshuvo97@gmail.com',
+                        hintText: 'Enter your email',
                         suffixIcon: Icon(Icons.check, color: Colors.green),
                         filled: true,
                         fillColor: Color(0xFFF5F5F5),
@@ -205,12 +206,16 @@ class _SignupPageState extends State<SignupPage> {
                     // Password Input
                     TextField(
                       controller: passwordController,
-                      obscureText: true,
+                      obscureText: !isPasswordVisible,
                       decoration: InputDecoration(
-                        hintText: '●●●●●●●',
+                        hintText: 'Enter your password',
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.visibility_off),
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
                         ),
                         filled: true,
                         fillColor: const Color(0xFFF5F5F5),
@@ -221,19 +226,20 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // checkbox & policy
                     Row(
                       children: [
                         Checkbox(
                           value: isChecked,
-                          onChanged: canCheck
-                              ? (val) {
-                                  setState(() {
-                                    isChecked = val!;
-                                  });
-                                }
-                              : null,
+                          onChanged:
+                              canCheck
+                                  ? (val) {
+                                    setState(() {
+                                      isChecked = val!;
+                                    });
+                                  }
+                                  : null,
                         ),
                         const Text('I have read the '),
                         Text(

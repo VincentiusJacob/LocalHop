@@ -31,42 +31,70 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Local Hop!', style: TextStyle(color: Colors.black)),
+        title: RichText(
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: 'Local',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF5C2EBC),
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              TextSpan(
+                text: 'Hop!',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF99A3AB),
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0,
         actions: const [
-          IconButton(onPressed: null, icon: Icon(Icons.notifications)),
-          IconButton(onPressed: null, icon: Icon(Icons.search)),
+          Icon(Icons.notifications, color: Colors.deepPurple),
+          SizedBox(width: 10),
+          Icon(Icons.search, color: Colors.deepPurple),
+          SizedBox(width: 10),
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _filterTab(0, 'All', Icons.grid_view),
-              _filterTab(1, 'My', Icons.favorite),
-              _filterTab(2, 'Places', Icons.place),
-              _filterTab(3, 'Nature', Icons.nature_people_rounded),
-              _filterTab(4, 'Family', Icons.family_restroom),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     _filterTab(0, 'All', Icons.grid_view),
+          //     SizedBox(width: 12),
+          //     _filterTab(1, 'My', Icons.favorite),
+          //     SizedBox(width: 12),
+          //     _filterTab(2, 'Family', Icons.family_restroom),
+          //     SizedBox(width: 12),
+          //     _filterTab(3, 'Nature', Icons.nature_people_rounded),
+          //     SizedBox(width: 12),
+          //     _filterTab(4, 'Kids', Icons.child_friendly),
+          //   ],
+          // ),
           const SizedBox(height: 20),
-          const Text('Recommended for you', style: TextStyle(fontSize: 20)),
+          const Text('Recommended for you', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
           const SizedBox(height: 10),
           ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
           const SizedBox(height: 20),
           const Text(
             'Recommended places by others',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 10),
           ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
           const SizedBox(height: 20),
           const Text(
             'Explore Similar Destination',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 10),
           ..._cities.take(3).map((city) => _imageCard(context, city)).toList(),
@@ -75,40 +103,40 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  int selectedTab = 0;
+  // int selectedTab = 0;
 
-  Widget _filterTab(int index, String label, IconData icon) {
-    bool isSelected = selectedTab == index;
+  // Widget _filterTab(int index, String label, IconData icon) {
+  //   bool isSelected = selectedTab == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedTab = index;
-        });
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-            decoration: BoxDecoration(
-              color: isSelected ? Colors.purple : Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Icon(icon, color: isSelected ? Colors.white : Colors.purple),
-          ),
-          SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: isSelected ? Colors.white : Colors.purple,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //   return GestureDetector(
+  //     onTap: () {
+  //       setState(() {
+  //         selectedTab = index;
+  //       });
+  //     },
+  //     child: Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Container(
+  //           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+  //           decoration: BoxDecoration(
+  //             color: isSelected ? Colors.purple : Colors.grey.shade200,
+  //             borderRadius: BorderRadius.circular(20),
+  //           ),
+  //           child: Icon(icon, color: isSelected ? Colors.white : Colors.purple),
+  //         ),
+  //         SizedBox(height: 4),
+  //         Text(
+  //           label,
+  //           style: TextStyle(
+  //             color: isSelected ? Colors.white : Colors.purple,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
 
 Widget _imageCard(BuildContext context, CityModel city) {

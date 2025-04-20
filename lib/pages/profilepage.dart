@@ -25,15 +25,16 @@ class _ProfilePageState extends State<ProfilePage> {
               TextSpan(
                 text: 'Local',
                 style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
                   color: Color(0xFF5C2EBC),
+                  fontFamily: 'Montserrat',
                 ),
               ),
               TextSpan(
-                text: ' Hop!',
+                text: 'Hop!',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 22,
                   fontWeight: FontWeight.w400,
                   color: Color(0xFF99A3AB),
                 ),
@@ -51,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const CircleAvatar(
                   radius: 45,
-                  backgroundImage: AssetImage('assets/images/profile.png'),
+                  backgroundImage: AssetImage('assets/images/profilepicture.jpeg'),
                 ),
                 const SizedBox(width: 20),
                 Column(

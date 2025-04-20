@@ -17,17 +17,24 @@ class _SignInPageState extends State<SignInPage> {
   //bagian validasi login
   final AuthService authService = AuthService();
 
+  bool isPasswordVisible = false;
 
   void loginUser() async {
-    bool isLoggedIn = await authService.login(emailController.text, passwordController.text);
+    bool isLoggedIn = await authService.login(
+      emailController.text,
+      passwordController.text,
+    );
     if (isLoggedIn) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login Successful")));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Login Successful")));
 
       //masuk ke main page
       Navigator.pushReplacementNamed(context, '/main');
-
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login Failed: Invalid credentials")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login Failed: Invalid credentials")),
+      );
     }
   }
 
@@ -72,7 +79,10 @@ class _SignInPageState extends State<SignInPage> {
                   const Center(
                     child: Text(
                       'Welcome Back!',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -81,8 +91,14 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      icon: const Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                      label: const Text('CONTINUE WITH FACEBOOK', style: TextStyle(color: Colors.white)),
+                      icon: const Icon(
+                        FontAwesomeIcons.facebookF,
+                        color: Colors.white,
+                      ),
+                      label: const Text(
+                        'CONTINUE WITH FACEBOOK',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF5C2EBC),
                         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -99,7 +115,10 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(
-                      icon: const Icon(FontAwesomeIcons.google, color: Colors.black),
+                      icon: const Icon(
+                        FontAwesomeIcons.google,
+                        color: Colors.black,
+                      ),
                       label: const Text('CONTINUE WITH GOOGLE'),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -131,9 +150,9 @@ class _SignInPageState extends State<SignInPage> {
                     decoration: InputDecoration(
                       hintText: 'Email address',
                       filled: true,
-                      fillColor: const Color(0xFFF1F2F6),
+                      fillColor: const Color(0xFFF5F5F5),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
                         borderSide: BorderSide.none,
                       ),
                     ),
@@ -143,14 +162,22 @@ class _SignInPageState extends State<SignInPage> {
                   // Password input
                   TextField(
                     controller: passwordController,
-                    obscureText: true,
+                    obscureText: !isPasswordVisible,
                     decoration: InputDecoration(
-                      hintText: 'Password',
+                      hintText: 'Enter your password',
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                      ),
                       filled: true,
-                      fillColor: const Color(0xFFF1F2F6),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+                      fillColor: const Color(0xFFF5F5F5),
+                      border: const OutlineInputBorder(
                         borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                     ),
                   ),

@@ -9,13 +9,28 @@
     "places": [
       {
         "name": "Malioboro",
-        "description": "Jalan legendaris penuh oleh-oleh dan kuliner",
+        "description": "Legendary street full of street food and souvenirs",
         "image": "assets/images/Malioboro.jpg"
       },
       {
         "name": "Keraton Yogyakarta",
-        "description": "Istana kerajaan budaya Jawa",
+        "description": "An old javanese kingdom's palace",
         "image": "assets/images/Keraton.jpg"
+      },
+      {
+        "name": "Candi Borobudur",
+        "description": "A magnificent Buddhist temple and UNESCO World Heritage site.",
+        "image": "assets/images/CandiBorobudur.jpg"
+      },
+      {
+        "name": "Candi Prambanan",
+        "description": "A stunning Hindu temple complex, also a UNESCO World Heritage site.",
+        "image": "assets/images/CandiPrambanan.jpeg"
+      },
+      {
+        "name": "Pantai Parangtritis",
+        "description": "A famous beach known for its large waves, perfect for surfers.",
+        "image": "assets/images/PantaiParangtritis.jpg"
       }
     ]
   },
@@ -23,24 +38,99 @@
     "city": "Bandung",
     "province": "Jawa Barat",
     "image": "assets/images/Bandung.jpeg",
-    "description": "Bandung dikenal sebagai Paris van Java, kota dengan udara sejuk, kuliner lezat, dan pusat fashion.",
+    "description": "Known as Paris van Java, a city with nice and cool weather.",
     "favorite": 27293,
     "category": "Popular",
     "places": [
       {
         "name": "Gedung Sate",
-        "description": "Ikon arsitektur kolonial Belanda di jantung kota Bandung.",
+        "description": "An architecture built by Dutch in 19th centuries located in the heart of the city.",
         "image": "assets/images/gedung_sate.jpeg"
       },
       {
         "name": "Kawah Putih",
-        "description": "Danau kawah berwarna putih kehijauan yang memesona di Ciwidey.",
+        "description": "A white crater located in Ciwidey.",
         "image": "assets/images/kawah_putih.jpeg"
       },
       {
         "name": "Farm House Lembang",
-        "description": "Wisata keluarga dengan tema Eropa dan rumah hobbit.",
+        "description": "A nice and good familty destination located in Lembang.",
         "image": "assets/images/farmhouse.jpeg"
+      }
+    ]
+  },
+  {
+    "city": "Bali",
+    "province": "Bali",
+    "image": "assets/images/Bali.jpeg",
+    "description": "Bali is a famous Indonesian island known for its beautiful beaches, temples, and vibrant culture.",
+    "favorite": 38912,
+    "category": "Popular",
+    "places": [
+      {
+        "name": "Uluwatu Temple",
+        "description": "A stunning temple located on a cliff with a breathtaking ocean view.",
+        "image": "assets/images/Uluwatu.jpeg"
+      },
+      {
+        "name": "Sacred Monkey Forest Sanctuary",
+        "description": "A lush jungle sanctuary where you can interact with hundreds of monkeys.",
+        "image": "assets/images/MonyetUbud.jpeg"
+      },
+      {
+        "name": "Kuta Beach",
+        "description": "A popular beach for surfing, sunbathing, and enjoying Bali's nightlife.",
+        "image": "assets/images/Kuta.jpeg"
+      }
+    ]
+  },
+  {
+    "city": "Jakarta",
+    "province": "DKI Jakarta",
+    "image": "assets/images/Jakarta.jpeg",
+    "description": "The capital city of Indonesia, Jakarta is known for its dynamic lifestyle, business district, and historical sites.",
+    "favorite": 42104,
+    "category": "Popular",
+    "places": [
+      {
+        "name": "Monas",
+        "description": "National Monument, a symbol of Indonesia's independence.",
+        "image": "assets/images/Monas.jpeg"
+      },
+      {
+        "name": "Kota Tua",
+        "description": "A historical area filled with colonial buildings and museums.",
+        "image": "assets/images/KotaTua.jpg"
+      },
+      {
+        "name": "Taman Mini Indonesia Indah",
+        "description": "A cultural park showcasing Indonesia's diverse culture and traditions.",
+        "image": "assets/images/TMII.jpeg"
+      }
+    ]
+  },
+  {
+    "city": "Surabaya",
+    "province": "Jawa Timur",
+    "image": "assets/images/Surabaya.jpeg",
+    "description": "Surabaya is an urban hub in East Java, known for its trade history and modern cityscape.",
+    "favorite": 28319,
+    "category": "My",
+    "places": [
+      {
+        "name": "Tugu Pahlawan",
+        "description": "A monument to honor Indonesia’s heroes during the independence war.",
+        "image": "assets/images/TuguPahlawan"
+      },
+      {
+        "name": "House of Sampoerna",
+        "description": "A museum showcasing Surabaya's history and the cigarette industry.",
+        "image": "assets/images/HoS.jpeg"
+      },
+      {
+        "name": "Surabaya Zoo",
+        "description": "One of the oldest zoos in Indonesia, home to a variety of animals.",
+        "image": "assets/images/SurabayaZoo.jpeg"
       }
     ]
   }

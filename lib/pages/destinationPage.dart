@@ -13,6 +13,7 @@ class DestinationPage extends StatefulWidget {
 class _DestinationPageState extends State<DestinationPage> {
   final CityService _cityService = CityService();
   List<CityModel> _cities = [];
+  List<CityModel> _SearchCities = [];
   int selectedTab = 0;
 
   @override
@@ -25,6 +26,7 @@ class _DestinationPageState extends State<DestinationPage> {
     final List<CityModel> cities = await _cityService.loadCities();
     setState(() {
       _cities = cities;
+      _SearchCities = cities;
     });
   }
 
@@ -58,11 +60,29 @@ class _DestinationPageState extends State<DestinationPage> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: const [
-          Icon(Icons.notifications, color: Colors.deepPurple),
-          SizedBox(width: 10),
-          Icon(Icons.search, color: Colors.deepPurple),
-          SizedBox(width: 10),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications, color: Colors.deepPurple),
+            onPressed: () {
+              
+            },
+          ),
+          const SizedBox(
+            width: 10,
+          ), 
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.deepPurple),
+            onPressed: () {
+             
+              showSearch(
+                context: context,
+                delegate: CitySearchDelegate(
+                  _cities,
+                ), 
+              );
+            },
+          ),
+          const SizedBox(width: 10),
         ],
       ),
       body: Column(
@@ -211,3 +231,79 @@ class _DestinationPageState extends State<DestinationPage> {
     }
   }
 }
+
+class CitySearchDelegate extends SearchDelegate {
+  final List<CityModel> cities;
+
+  CitySearchDelegate(this.cities);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    final filteredCities =
+        cities.where((city) {
+          return city.city.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+
+    return ListView.builder(
+      itemCount: filteredCities.length,
+      itemBuilder: (context, index) {
+        final city = filteredCities[index];
+        return ListTile(
+          title: Text(city.city),
+          onTap: () {
+            close(context, null);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => CityDetailPage(city: city)),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestions =
+        cities.where((city) {
+          return city.city.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        final city = suggestions[index];
+        return ListTile(
+          title: Text(city.city),
+          onTap: () {
+            query = city.city;
+            showResults(context);
+          },
+        );
+      },
+    );
+  }
+}
+

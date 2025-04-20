@@ -56,6 +56,8 @@ class DestinationPlacesPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       place.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,

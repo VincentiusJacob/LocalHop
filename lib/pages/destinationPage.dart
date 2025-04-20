@@ -197,7 +197,7 @@ class _DestinationPageState extends State<DestinationPage> {
       return _cities;
     }
 
-    switch (selectedTab) {
+    switch (selectedTab) {  
       case 1:
         return _cities.where((city) => city.category == 'My').toList();
       case 2:

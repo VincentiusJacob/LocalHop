@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/model/user_model.dart';
 import 'editprofile.dart';
 import 'settingspage.dart';
 import 'package:flutter_app_demo/pages/landingpage.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final UserModel? user;
+ 
+  const ProfilePage({super.key,this.user});
+
+  
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -14,6 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   
 
+  
   bool _notificationsAllowed = true;
 
   @override
@@ -62,16 +68,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children:  [
                     Text(
-                      "Your name",
+                       widget.user?.name ?? "No name",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      "yourname@gmail.com",
+                      widget.user?.email ??"NoEmail@gmail.com",
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],

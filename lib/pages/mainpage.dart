@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/model/user_model.dart';
 import 'package:flutter_app_demo/pages/destinationPage.dart';
 import 'homepage.dart';
 import 'profilepage.dart';
@@ -13,6 +14,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
+  
+
   final List<Widget> _pages = [
     const HomePage(),
     const DestinationPage(),
@@ -23,10 +26,21 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 2) {
+      final UserModel? user = ModalRoute.of(context)?.settings.arguments as UserModel?;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProfilePage(user: user),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

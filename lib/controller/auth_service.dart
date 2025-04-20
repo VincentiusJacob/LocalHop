@@ -56,14 +56,14 @@ class AuthService {
     return true;
   }
 
-  Future<bool> login(String email, String password) async {
+  Future<UserModel?> login(String email, String password) async {
     await loadUsers();
 
     for (var u in _users) {
       if (u.email == email && u.password == password) {
-        return true;
+        return u;
       }
     }
-    return false;
+    return null;
  }
 }

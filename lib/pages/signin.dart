@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo/model/city_model.dart';
+import 'package:flutter_app_demo/model/user_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../controller/auth_service.dart';
@@ -20,17 +22,17 @@ class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = false;
 
   void loginUser() async {
-    bool isLoggedIn = await authService.login(
+    UserModel? isLoggedIn = await authService.login(
       emailController.text,
       passwordController.text,
     );
-    if (isLoggedIn) {
+    if (isLoggedIn != null) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Login Successful")));
 
       //masuk ke main page
-      Navigator.pushReplacementNamed(context, '/main');
+      Navigator.pushReplacementNamed(context, '/main', arguments: isLoggedIn);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login Failed: Invalid credentials")),

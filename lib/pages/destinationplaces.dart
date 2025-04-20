@@ -12,7 +12,7 @@ class DestinationPlacesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Destination Places in ${city.city}"),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.deepPurple,
+        foregroundColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

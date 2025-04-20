@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'editprofile.dart';
 import 'settingspage.dart';
-
-
+import 'package:flutter_app_demo/pages/landingpage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,13 +11,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _notificationsAllowed = true; 
+  bool _notificationsAllowed = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: RichText(
           text: const TextSpan(
             children: [
@@ -52,7 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const CircleAvatar(
                   radius: 45,
-                  backgroundImage: AssetImage('assets/images/profilepicture.jpeg'),
+                  backgroundImage: AssetImage(
+                    'assets/images/profilepicture.jpeg',
+                  ),
                 ),
                 const SizedBox(width: 20),
                 Column(
@@ -60,7 +62,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: const [
                     Text(
                       "Your name",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     Text(
                       "yourname@gmail.com",
@@ -80,7 +85,9 @@ class _ProfilePageState extends State<ProfilePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const EditProfilePage()),
+                MaterialPageRoute(
+                  builder: (context) => const EditProfilePage(),
+                ),
               );
             },
           ),
@@ -95,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             },
           ),
-         _buildListTile(
+          _buildListTile(
             icon: Icons.notifications_none,
             text: "Notification",
             trailingWidget: PopupMenuButton<String>(
@@ -104,28 +111,28 @@ class _ProfilePageState extends State<ProfilePage> {
                   _notificationsAllowed = value == "Allow";
                 });
               },
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: "Allow",
-                  child: Text("Allow"),
-                ),
-                const PopupMenuItem(
-                  value: "Mute",
-                  child: Text("Mute"),
-                ),
-              ],
+              itemBuilder:
+                  (context) => [
+                    const PopupMenuItem(value: "Allow", child: Text("Allow")),
+                    const PopupMenuItem(value: "Mute", child: Text("Mute")),
+                  ],
               child: Text(
                 _notificationsAllowed ? "Allow" : "Mute",
                 style: const TextStyle(color: Colors.grey),
               ),
             ),
-            onTap: () {}, 
+            onTap: () {},
           ),
 
           _buildListTile(
             icon: Icons.logout,
             text: "Log Out",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Landingpage()),
+              );
+            },
           ),
         ],
       ),
@@ -138,9 +145,14 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
+            padding: const EdgeInsets.symmetric(
+              vertical: 24.0,
+              horizontal: 32.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -183,12 +195,13 @@ class _ProfilePageState extends State<ProfilePage> {
     return ListTile(
       leading: Icon(icon, color: Colors.deepPurple),
       title: Text(text),
-      trailing: trailingWidget ??
-      (trailing != null
-        ? Icon(trailing, color: Colors.deepPurple)
-        : trailingText != null
-            ? Text(trailingText, style: const TextStyle(color: Colors.grey))
-            : null),
+      trailing:
+          trailingWidget ??
+          (trailing != null
+              ? Icon(trailing, color: Colors.deepPurple)
+              : trailingText != null
+              ? Text(trailingText, style: const TextStyle(color: Colors.grey))
+              : null),
 
       onTap: onTap,
     );

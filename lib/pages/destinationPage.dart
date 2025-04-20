@@ -32,6 +32,7 @@ class _DestinationPageState extends State<DestinationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: RichText(
           text: const TextSpan(
             children: [
@@ -95,7 +96,7 @@ class _DestinationPageState extends State<DestinationPage> {
                 itemCount: _filteredCities().length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: 1,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),
@@ -134,14 +135,13 @@ class _DestinationPageState extends State<DestinationPage> {
                               right: 0,
                               child: Container(
                                 padding: const EdgeInsets.all(8),
-                                color: Colors.black.withOpacity(0.5),
                                 child: Text(
                                   city.city,
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  textAlign: TextAlign.center,
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),

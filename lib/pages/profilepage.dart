@@ -11,6 +11,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  
+
   bool _notificationsAllowed = true;
 
   @override
@@ -140,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   //notif toggle
-  void _showNotificationDialog() {
+  void showNotificationDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {

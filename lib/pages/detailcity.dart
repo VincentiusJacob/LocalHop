@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/model/city_model.dart';
 import 'package:flutter_app_demo/pages/destinationplaces.dart';
+import 'package:flutter_app_demo/pages/detailDestinationPlaces.dart';
 
 
 
@@ -97,7 +98,16 @@ class CityDetailPage extends StatelessWidget {
                         separatorBuilder: (context, _) => SizedBox(width: 12),
                         itemBuilder: (context, index) {
                           final place = city.places[index];
-                          return Container(
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailDestinationPage(place: place),
+                                ),
+                              );
+                            },
+                          child:  Container(
                             width: 140,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +129,8 @@ class CityDetailPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          );
+                          ),
+                        );
                         },
                       ),
                     ),

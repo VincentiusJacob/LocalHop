@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo/model/city_model.dart';
 import 'package:flutter_app_demo/model/user_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

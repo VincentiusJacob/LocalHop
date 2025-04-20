@@ -9,6 +9,8 @@ class Landingpage extends StatefulWidget {
 
 class _LandingPageState extends State<Landingpage> {
   @override
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -41,16 +43,15 @@ class _LandingPageState extends State<Landingpage> {
                         TextSpan(
                           text: 'Local',
                           style: TextStyle(
-                            fontSize: 42,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w800,
                             color: Color(0xFF5C2EBC),
-                            fontFamily: 'Montserrat'
                           ),
                         ),
                         TextSpan(
                           text: 'Hop!',
                           style: TextStyle(
-                            fontSize: 42,
+                            fontSize: 32,
                             fontWeight: FontWeight.w400,
                             color: Color(0xFF99A3AB),
                           ),
@@ -79,11 +80,10 @@ class _LandingPageState extends State<Landingpage> {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    'Discover the beauty of Indonesia,\nwhere every journey inspires.',
+                    'We guide you towards nutritious, wholesome food\nchoices for a healthier lifestyle.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
-                      fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.center,
                   ),

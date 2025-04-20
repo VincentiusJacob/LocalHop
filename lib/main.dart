@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("hello world");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Local Hop!',

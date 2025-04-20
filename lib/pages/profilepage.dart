@@ -16,9 +16,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
-  
-
   
   bool _notificationsAllowed = true;
 
@@ -28,6 +25,12 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context); // untuk kembali ke halaman sebelumnya
+          },
+        ),
         title: RichText(
           text: const TextSpan(
             children: [
@@ -77,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Text(
-                      widget.user?.email ??"NoEmail@gmail.com",
+                      widget.user?.email ??"yourname@gmail.com",
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],

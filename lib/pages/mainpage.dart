@@ -23,10 +23,6 @@ class _MainPageState extends State<MainPage> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
     if (index == 2) {
       final UserModel? user = ModalRoute.of(context)?.settings.arguments as UserModel?;
       Navigator.push(
@@ -35,11 +31,19 @@ class _MainPageState extends State<MainPage> {
           builder: (context) => ProfilePage(user: user),
         ),
       );
+      return;
     }
+
+    
+
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
 
     return Scaffold(
       body: _pages[_selectedIndex],

@@ -19,25 +19,29 @@ class _SignInPageState extends State<SignInPage> {
   final AuthService authService = AuthService();
 
   bool isPasswordVisible = false;
-
   void loginUser() async {
     UserModel? isLoggedIn = await authService.login(
       emailController.text,
       passwordController.text,
     );
-    if (isLoggedIn != null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Login Successful")));
 
-      //masuk ke main page
-      Navigator.pushReplacementNamed(context, '/main', arguments: isLoggedIn);
+    if (isLoggedIn != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login Successful")),
+      );
+
+      Navigator.pushReplacementNamed(
+        context,
+        '/main',
+        arguments: isLoggedIn,
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login Failed: Invalid credentials")),
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,9 @@ import 'homepage.dart';
 import 'profilepage.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final UserModel? user;
+
+  const MainPage({Key? key, this.user}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -13,29 +15,20 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  late List<Widget> _pages;
 
-  
+  @override
+  void initState() {
+    super.initState();
 
-  final List<Widget> _pages = [
-    const HomePage(),
-    const DestinationPage(),
-    const ProfilePage(),
-  ];
+    _pages = [
+      const HomePage(),
+      const DestinationPage(),
+      ProfilePage(user: widget.user), 
+    ];
+  }
 
   void _onItemTapped(int index) {
-    if (index == 2) {
-      final UserModel? user = ModalRoute.of(context)?.settings.arguments as UserModel?;
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ProfilePage(user: user),
-        ),
-      );
-      return;
-    }
-
-    
-
     setState(() {
       _selectedIndex = index;
     });
@@ -43,8 +36,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

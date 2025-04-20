@@ -16,8 +16,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
+  late UserModel _user;
   bool _notificationsAllowed = true;
+
+  void initState() {
+    super.initState();
+    _user = widget.user!; 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // untuk kembali ke halaman sebelumnya
+            Navigator.pop(context);
           },
         ),
         title: RichText(
@@ -72,17 +77,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:  [
-                    Text(
-                       widget.user?.name ?? "No name",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                   Text(
+                    _user.name,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Text(
-                      widget.user?.email ??"yourname@gmail.com",
-                      style: TextStyle(color: Colors.grey),
-                    ),
+                  ),
+                  Text(
+                    _user.email,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+
                   ],
                 ),
               ],
@@ -98,9 +104,15 @@ class _ProfilePageState extends State<ProfilePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const EditProfilePage(),
+                  builder: (context) => EditProfilePage(user: _user),
                 ),
-              );
+              ).then((updatedUser) {
+                if (updatedUser != null && updatedUser is UserModel) {
+                  setState(() {
+                    _user = updatedUser;
+                  });
+                }
+              });
             },
           ),
           _buildListTile(

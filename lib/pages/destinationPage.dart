@@ -58,12 +58,26 @@ class _DestinationPageState extends State<DestinationPage> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: const [
-          Icon(Icons.notifications, color: Colors.deepPurple),
-          SizedBox(width: 10),
-          Icon(Icons.search, color: Colors.deepPurple),
-          SizedBox(width: 10),
-        ],
+     actions: [
+      IconButton(
+          icon: Icon(Icons.notifications, color: Colors.deepPurple),
+          onPressed: () {
+          
+          },
+        ),
+        SizedBox(width: 10),
+        IconButton(
+          icon: Icon(Icons.search, color: Colors.deepPurple),
+          onPressed: () {
+            showSearch(
+              context: context,
+              delegate: CitySearchDelegate(_cities),
+            );
+          },
+        ),
+        SizedBox(width: 10),
+      ],
+
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,5 +223,81 @@ class _DestinationPageState extends State<DestinationPage> {
       default:
         return _cities;
     }
+  }
+}
+
+
+class CitySearchDelegate extends SearchDelegate {
+  final List<CityModel> cities;
+
+  CitySearchDelegate(this.cities);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    final filteredCities =
+        cities.where((city) {
+          return city.city.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+
+    return ListView.builder(
+      itemCount: filteredCities.length,
+      itemBuilder: (context, index) {
+        final city = filteredCities[index];
+        return ListTile(
+          title: Text(city.city),
+          onTap: () {
+            close(context, null);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => CityDetailPage(city: city)),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestions =
+        cities.where((city) {
+          return city.city.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        final city = suggestions[index];
+        return ListTile(
+          title: Text(city.city),
+          onTap: () {
+            query = city.city;
+            showResults(context);
+          },
+        );
+      },
+    );
   }
 }
